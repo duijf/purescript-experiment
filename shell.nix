@@ -9,5 +9,5 @@ let
   });
 in pkgs.stdenv.mkDerivation {
   name = "yo";
-  buildInputs = with easyPS; [ purs psc-package-simple pkgs.entr ];
+  buildInputs = with easyPS; [ pkgs.nodejs pkgs.yarn pkgs.gnumake purs psc-package-simple pkgs.entr ];
 }

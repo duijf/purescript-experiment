@@ -3,8 +3,8 @@
 default: help
 
 
-setup:
-	nix-shell --run 'yarn install'
+setup:  ## Yarn Bullshit
+	yarn install
 
 
 help:  ## Print this output
@@ -12,16 +12,16 @@ help:  ## Print this output
 
 
 ps:  ## Compile PureScript sources into JavaScript
-	nix-shell --run make ps-priv
+	make ps-priv
 
 
-ps-priv:
+ps-priv: ## Builds ps
 	psc-package build
 
 
 ps-watch:  ## Build on file change
-	nix-shell --run 'ls src/** | entr -s "make ps-priv"'
+	(./node_modules/.bin/parcel src/index.html) & (ls src/** | entr -s "make ps-priv")
 
 
 run:  ## Run a dev server
-	nix-shell --run './node_modules/.bin/parcel src/index.html'
+	./node_modules/.bin/parcel src/index.html
