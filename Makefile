@@ -1,5 +1,6 @@
 .PHONY: build help serve
-.DEFAULT: help
+
+default: help
 
 
 help:  ## Print this output
@@ -8,12 +9,11 @@ help:  ## Print this output
 
 build:  ## Build bundle.js
 	psc-package build
-	purs bundle --module Main --main Main output/*/*.js > dist/bundle.js
 
 
 watch:  ## Build on file change
 	ls src/** | entr -s 'make build'
 
 
-serve:  ## Run a dev server
-	cd dist && python3.6 -m http.server
+run:  ## Run a dev server
+	./node_modules/.bin/parcel src/index.html
