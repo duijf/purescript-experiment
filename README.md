@@ -2,33 +2,37 @@
 
 [**@arianvp**][arianvp-gh] and [**@duijf**][duijf-gh] derping with Purescript.
 
-## Development
+## Setup
 
-Get [`nix`][nix-site], then:
+Get [`nix`][nix-site], then the following stuff works:
 
 ```
-# Get an isolated shell which has all dependencies installed.
-$ nix-shell
-
 # We have a Makefile with common commands. It supports help
-# output. Run `make` for a list of supported commands.
+# output. Run `make` for a list of all supported commands.
 $ make
+
+# Run `make setup` to create an environment with Nix and
+# install all dependencies. This only needs to be done when
+# you change package.json or shell.nix.
+$ make setup
 ```
 
 ## Development
 
-Open two terminals:
+The build works in two phases:
+
+ 1. Compile the Purescript source into JavaScript using `psc-package build`.
+ 1. Run the `parcel` module bundler on the JavaScript to get a working site.
+
+To run the build, open two terminals:
 
 ```
-# Run a dev server in terminal 1
-$ make serve
+# Build Purescript sources on file change
+$ make ps-watch
 
-# Run build on file change in terminal 2
-$ make watch
+# Bundle JavaScript sources on file change, supports live reload.
+$ make run
 ```
-
-You need to manually refresh your browser on changes. Live reload isn't there
-unfortunately.
 
  [arianvp-gh]:https://github.com/arianvp
  [duijf-gh]:https://github.com/duijf
