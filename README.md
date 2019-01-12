@@ -2,21 +2,24 @@
 
 [**@arianvp**][arianvp-gh] and [**@duijf**][duijf-gh] derping with Purescript.
 
-## Setup
+## Development
 
 Get [`nix`][nix-site], then:
 
 ```
+# Get an isolated shell which has all dependencies installed.
 $ nix-shell
+
+# We have a Makefile with common commands. It supports help
+# output. Run `make` for a list of supported commands.
+$ make
 ```
 
-## Building
-
-While in your `nix-shell`, you can run the following commands:
+## Development
 
 ```
-# Build the project to the output/ directory
-$ psc-package build
+$ make build
+$ make serve
 ```
 
  [arianvp-gh]:https://github.com/arianvp
