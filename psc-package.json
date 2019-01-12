@@ -4,6 +4,7 @@
   "source": ".",
   "depends": [
     "prelude",
-    "concur"
+    "concur",
+    "tailrec"
   ]
 }
