@@ -1,27 +1,31 @@
-.PHONY: setup help ps ps-priv ps-watch run
+.PHONY: setup help ps js dev dev-ps dev-js
 
 default: help
 
 
-setup:  ## Yarn Bullshit
-	yarn install
+setup:  ## Install JS dependencies
+	yarn
 
 
-help:  ## Print this output
-	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'
-
-
-ps:  ## Compile PureScript sources into JavaScript
-	make ps-priv
-
-
-ps-priv: ## Builds ps
+ps:  ## Compile PS sources
 	psc-package build
 
 
-ps-watch:  ## Build on file change
-	(./node_modules/.bin/parcel src/index.html) & (ls src/** | entr -s "make ps-priv")
+js:  ## Bundle JS
+	./node_modules/.bin/parcel build src/index.html
 
 
-run:  ## Run a dev server
+dev:  ## Watch PS and JS sources; run dev server
+	{ make dev-ps & make dev-js; }
+
+
+dev-ps:  ## Watch PS sources
+	ls src/** | entr -s "make ps"
+
+
+dev-js:  ## Watch JS sources; run dev server
 	./node_modules/.bin/parcel src/index.html
+
+
+help:  ## Print this output
+	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-10s\033[0m %s\n", $$1, $$2}'
