@@ -9,5 +9,5 @@ let
   });
 in pkgs.stdenv.mkDerivation {
   name = "yo";
-  buildInputs = with easyPS; [ purs psc-package-simple pkgs.python36 ];
+  buildInputs = with easyPS; [ purs psc-package-simple pkgs.python36 pkgs.entr ];
 }

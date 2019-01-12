@@ -11,5 +11,9 @@ build:  ## Build bundle.js
 	purs bundle --module Main --main Main output/*/*.js > dist/bundle.js
 
 
+watch:  ## Build on file change
+	ls src/** | entr -s 'make build'
+
+
 serve:  ## Run a dev server
 	cd dist && python3.6 -m http.server

@@ -17,10 +17,18 @@ $ make
 
 ## Development
 
+Open two terminals:
+
 ```
-$ make build
+# Run a dev server in terminal 1
 $ make serve
+
+# Run build on file change in terminal 2
+$ make watch
 ```
+
+You need to manually refresh your browser on changes. Live reload isn't there
+unfortunately.
 
  [arianvp-gh]:https://github.com/arianvp
  [duijf-gh]:https://github.com/duijf
